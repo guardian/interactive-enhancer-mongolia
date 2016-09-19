@@ -1,0 +1,38 @@
+.g-vam-player-container {
+	max-width: 1100px;
+	margin: 60px auto;
+	position: relative;
+	background: #eaeaea;
+
+}
+
+
+.g-vam-video-player {
+	width: 100%;
+	padding: 56.25% 0 0 0;
+	position: relative;
+
+	video {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		
+	}
+	
+}
+
+.g-vam-mobile-fallback {
+	max-width: 1100px;
+	margin: 0 auto;
+
+	margin: 40px 0;
+	padding: 10px 0;
+
+	border-top: 1px solid #eaeaea;
+	border-bottom: 1px solid #eaeaea;
+
+	img {
+		width: 100%;
+	}
+}
+
