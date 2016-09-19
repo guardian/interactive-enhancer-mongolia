@@ -5,7 +5,6 @@ import {isMobile, isTablet, isDesktop, isCapable} from '../../lib/browser'
 import Video from '../video/video'
 import PhotoGrid from '../photogrid/photogrid'
 import Iframe from '../iframe/iframeLoader'
-import Divider from '../divider/divider'
 
 var visualsAssetManager =  (function (module) {
 
@@ -49,8 +48,6 @@ var visualsAssetManager =  (function (module) {
 				assetQueue.push( new Video(el, ref, data.blocks[type + '-' + id], bitRate) );
 			} else if(type == 'iframe'){
 				assetQueue.push( new Iframe(el, ref, data.blocks[type + '-' + id]) );
-			} else if(type == 'divider'){
-				assetQueue.push( new Divider(el, id) );
 			}
 		}	
 	}
@@ -95,7 +92,7 @@ var visualsAssetManager =  (function (module) {
 				divider.className = 'gv-section-divider';
 
 				console.log(element.nextSibling)
-				
+
 				element.nextSibling.className += 'gv-new-section';
 				element.parentNode.insertBefore(divider, element.nextSibling);
 				element.parentNode.removeChild(element);
