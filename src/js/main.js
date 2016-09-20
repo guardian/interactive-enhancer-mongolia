@@ -1,8 +1,9 @@
 import vam from './components/visualsAssetManager/visualsAssetManager'
-//import mockHTML from './text/mock.html!text';
+import mockHTML from './text/mock.html!text';
 
 export function init(el, context, config, mediator) {
    
+   //vam.initAsset(el);
 
    if(window.location.hostname != 'localhost'){
 		vam.initAsset(el);

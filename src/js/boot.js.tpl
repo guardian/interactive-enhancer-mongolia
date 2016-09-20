@@ -1,14 +1,14 @@
 'use strict';
 define([], function() {
     function addCSS(url) {
-        //if(!window.visualsAssetManager){
+        if(!window.visualsAssetManager){
             var head = document.querySelector('head');
             var link = document.createElement('link');
             link.setAttribute('rel', 'stylesheet');
             link.setAttribute('type', 'text/css');
             link.setAttribute('href', url);
             head.appendChild(link);
-        //}
+        }
         
     }
 

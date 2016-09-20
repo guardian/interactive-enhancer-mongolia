@@ -6,7 +6,7 @@ import layout2 from './layout-2.html!text'
 
 
 export default function photoGrid(el, ref, data) {
-	console.log(el, ref)
+	//console.log(el, ref)
 	let module = {
 		el: el,
 		loaded: false,
@@ -27,14 +27,19 @@ export default function photoGrid(el, ref, data) {
 	}
 
 	function init(){
-		console.log(data)
+		
 		module.loaded = true;
 		var layout;
 		//render diferent layouts
-		if(data.style=='layout1'){
-			layout = layout1;
-		} else if(data.style=='layout2'){
-			layout = layout2;
+		try{
+			if(data.style=='layout1'){
+				layout = layout1;
+			} else if(data.style=='layout2'){
+				layout = layout2;
+			}
+		}
+		catch(e){
+			console.log(el, ref)
 		}
 
 		data.photos.forEach(function(p){

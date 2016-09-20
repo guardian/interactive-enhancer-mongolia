@@ -2,7 +2,7 @@ import {isMobile, isTablet, isDesktop, isCapable} from '../../lib/browser'
 import isElementInViewport from '../../lib/isElementInViewport'
 
 export default function iframe(el, ref, data) {
-    console.log(el, ref)
+    //console.log(el, ref)
     let module = {
         el: el,
         loaded: false,
@@ -23,7 +23,6 @@ export default function iframe(el, ref, data) {
     }
 
     function init(){
-        console.log(data)
         module.loaded = true;
         boot(module.el, module.data.src)
 

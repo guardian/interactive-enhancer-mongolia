@@ -6,12 +6,15 @@ import Video from '../video/video'
 import PhotoGrid from '../photogrid/photogrid'
 import Iframe from '../iframe/iframeLoader'
 
-var visualsAssetManager =  (function (module) {
-
-	if(module){
+var visualsAssetManager =  function (module) {
+	console.log('VAM')
+	if('loaded' in module){
+		console.log('vam return');
 		return module;
 	} else {
-		module = window.visualsAssetManager = {}
+		window.visualsAssetManager = module = {};
+		module.loaded = true;
+		console.log('vam init')
 	}
 
 	let	assetQueue = [],
@@ -32,7 +35,7 @@ var visualsAssetManager =  (function (module) {
 		})
 	}
 
-	function initAsset(el){
+	module.initAsset = function(el){
 		if( !isLoaded ){
 			toLoad.push(el);
 		} else {
@@ -44,7 +47,6 @@ var visualsAssetManager =  (function (module) {
 			if(type == 'photogrid'){
 				assetQueue.push( new PhotoGrid(el, ref, data.blocks[type + '-' + id]) );
 			} else if(type == 'video'){
-				console.log(bitRate)
 				assetQueue.push( new Video(el, ref, data.blocks[type + '-' + id], bitRate) );
 			} else if(type == 'iframe'){
 				assetQueue.push( new Iframe(el, ref, data.blocks[type + '-' + id]) );
@@ -63,7 +65,7 @@ var visualsAssetManager =  (function (module) {
 
 		isLoaded = true;
 		toLoad.forEach(function(f){
-			initAsset(f);
+			module.initAsset(f);
 		})
 
 		wrangleDividers();
@@ -90,8 +92,6 @@ var visualsAssetManager =  (function (module) {
 
 				var divider = document.createElement('div');
 				divider.className = 'gv-section-divider';
-
-				console.log(element.nextSibling)
 
 				element.nextSibling.className += 'gv-new-section';
 				element.parentNode.insertBefore(divider, element.nextSibling);
@@ -131,13 +131,10 @@ var visualsAssetManager =  (function (module) {
     });
 
 
-	return {
-		initAsset: initAsset
+	return module;
 
-	};
-	
 
-}(window.visualsAssetManager));
+}( window.visualsAssetManager || {} );
 
 
 export default visualsAssetManager;
