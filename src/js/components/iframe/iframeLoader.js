@@ -24,18 +24,24 @@ export default function iframe(el, ref, data) {
 
     function init(){
         module.loaded = true;
-        boot(module.el, module.data.src)
+        boot(module.el, module.data.src, module.data)
 
     }
 
     return module;
 }
 
-function boot (el, link) {
+function boot (el, link, data) {
     // Extract href of the first link in the content, if any
     var containerDiv = document.createElement('div')
         containerDiv.className = 'gv-iframe';
     el.appendChild(containerDiv);
+
+    
+    
+
+
+
     var iframe;
 
     function _postMessage(message) {
@@ -104,6 +110,13 @@ function boot (el, link) {
         // Replace link with iframe
         // Note: link is assumed to be a direct child
         containerDiv.appendChild(iframe);
+
+        if('credit' in data){
+            var credit = document.createElement('div');
+                credit.className ='gv-credit';
+                credit.innerHTML = data.credit;
+            containerDiv.appendChild(credit);
+        }
     }
 }
 
